@@ -112,4 +112,3 @@ Discord Server
 | `_env.example` | Environment variable template |
 | `_env` | Your local secrets — **do not commit** |
 <!-- updated: 2026-06-07 -->
-
