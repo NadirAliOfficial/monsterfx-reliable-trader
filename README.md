@@ -111,4 +111,4 @@ Discord Server
 | `requirements.txt` | Python dependencies |
 | `_env.example` | Environment variable template |
 | `_env` | Your local secrets — **do not commit** |
-<!-- updated: 2024-04-03-r01 -->
+<!-- updated: 2024-07-24-r01 -->
