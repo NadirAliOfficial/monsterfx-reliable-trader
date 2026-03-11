@@ -1,0 +1,11 @@
+# Discord Bot
+discord.py>=2.3.0
+
+# Web Server
+flask>=3.0.0
+
+# Environment Variables
+python-dotenv>=1.0.0
+
+# HTTP Requests
+requests>=2.31.0
