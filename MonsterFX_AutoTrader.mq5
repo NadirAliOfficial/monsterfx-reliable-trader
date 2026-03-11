@@ -181,10 +181,7 @@ int OnInit()
       
       if(HandleFastEMA[i] == INVALID_HANDLE || HandleSlowEMA[i] == INVALID_HANDLE ||
          HandleTrendEMA[i] == INVALID_HANDLE || HandleRSI[i] == INVALID_HANDLE || HandleATR[i] == INVALID_HANDLE)
-      {
-         Print("ERROR: Failed to create indicators for ", symbol);
-      }
-   }
+   
    
    
    if(SendGoldSignals)
@@ -217,12 +214,7 @@ int OnInit()
    Print("STRATEGY:");
    Print("   Trend TF: ", EnumToString(TrendTF), " (EMA ", TrendEMA, ")");
    Print("   Entry TF: ", EnumToString(EntryTF), " (EMA ", FastEMA, "/", SlowEMA, ")");
-   Print("   VWAP Filter: ", (UseVWAPFilter ? "ON" : "OFF"));
-   Print("   RSI Filter: ", (UseRSIFilter ? "ON" : "OFF"));
-   Print("   ATR SL/TP: ", (UseATRBasedSLTP ? "ON" : "OFF"));
-   Print("   Trailing Stop: ", (UseTrailingStop ? "ON" : "OFF"));
-   Print("   Session Filter: ", (UseSessionFilter ? "ON" : "OFF"));
-   Print("   News Filter: ", (UseNewsFilter ? "ON" : "OFF"));
+(UseNewsFilter ? "ON" : "OFF"));
    Print("");
    Print("TRADING PAIRS:");
    for(int i = 0; i < NumPairs; i++)
@@ -243,11 +235,7 @@ int OnInit()
       "Strategy: EMA %d/%d Crossover\\n" +
       "Trend TF: %s (EMA %d)\\n" +
       "Entry TF: %s (EMA %d/%d)\\n" +
-      "VWAP Filter: %s\\n" +
-      "RSI Filter: %s\\n" +
-      "ATR SL/TP: %s\\n" +
-      "Session Filter: %s\\n" +
-      "Lot Size: %.2f\\n" +
+  
       "Max DD: %.1f%%\\n" +
       "Max Daily Loss: %.1f%%\\n" +
       "Max Trades/Day: %d\\n" +
@@ -301,12 +289,7 @@ void OnDeinit(const int reason)
 
 void OnTick()
 {
-   CheckDailyReset();
-   
-   if(!CheckDrawdown() || !CheckDailyLoss())
-   {
-      if(TradingEnabled)
-      {
+   CheckDaily
          TradingEnabled = false;
          double dd = GetCurrentDrawdown();
          double dailyLoss = GetDailyLoss();
@@ -366,9 +349,6 @@ void OnTick()
 
 
 
-
-bool IsValidTradingSession()
-{
    MqlDateTime dt;
    TimeGMT(dt);
    
@@ -1435,3 +1415,4 @@ void SendStatusUpdate()
    
    WebRequest("POST", url, headers, 5000, post, result, resultHeaders);
 }
+
